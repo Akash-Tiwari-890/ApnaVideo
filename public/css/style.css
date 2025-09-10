@@ -1,0 +1,160 @@
+body{
+    overflow: hidden;
+}
+
+
+.LandingPageContainer{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/media/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.LandingPageContainer nav{
+    padding-inline: 1.2rem ;
+    padding-block:  1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;;
+}
+
+
+.LandingPageContainer nav h2{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.LandingPageContainer nav .navList{
+    display : flex;
+    gap: 1.2rem;
+}
+
+
+.landingMainContainer{
+    display : flex;
+    justify-content : space-between;
+    padding-inline: 3rem ;
+    height : 70vh;
+    align-items: center ;
+
+
+}
+
+.landingMainContainer > div:nth-child(1) {
+    font-size:1.9rem;
+}
+.landingMainContainer > div:nth-child(2) img{
+
+    height : 70vh;
+    width: auto;
+
+}
+
+.landingMainContainer > div:nth-child(1)  div[role="button"]{
+    background: #D97500;;
+    width : fit-content;
+    padding : 1rem;
+    border-radius: 20px;
+    margin-top: 1.9rem;
+}
+
+.landingMainContainer > div:nth-child(1)  div[role="button"] button{
+ 
+      
+    font-size : 1.7rem;
+    
+}
+
+
+
+
+
+.registercontainer{
+
+     width: 100vw !important;
+    height: 100vh !important;
+    background-image: url("/media/background.png") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover  !important;
+    color: white  !important; 
+    overflow-x: hidden;
+    overflow-y: hidden;
+    
+
+}
+
+
+/* In public/styles/styles.css */
+
+.btn-circle {
+    width: 6rem;
+    height: 50px;
+    padding: 6px 0;
+    border-radius: 50%; /* Makes the button round */
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.428571429;
+}
+.input{
+    border: 7px solid black;
+
+}
+
+.video{
+   
+    border-radius: 10px;
+    width: 40%;
+    height: auto;
+    margin: auto;
+}
+
+
+/* Ensure the page and containers take up the full viewport height */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling if elements overflow */
+}
+
+/* Make the main row take up full height and use flex to manage content */
+.row.h-100 {
+    height: 100vh;
+}
+
+/* Adjust the video container to have a flexible height, but a max height to prevent overflow */
+.video-container {
+    background-color: #000;
+    height: 70vh; /* Set a specific height for the video container */
+    max-height: calc(100vh - 200px); /* This calculates a max height to leave room for the header and controls */
+}
+
+#mainVideo {
+    /* Make the video fill its container while maintaining aspect ratio */
+    object-fit: contain; 
+}
+
+
+
+
+/* In your public/stylesheets/style.css file */
+
+#other-videos-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allows videos to wrap to the next line */
+    justify-content: center;
+    gap: 10px; /* Space between video thumbnails */
+    padding: 10px;
+    height: 100%;
+    overflow-y: auto; /* Allows scrolling if many users join */
+}
+
+/* Style for each individual video thumbnail */
+.other-video-thumbnail {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #555;
+}

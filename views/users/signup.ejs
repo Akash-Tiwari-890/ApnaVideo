@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') -%>
+<div class=" registercontainer">
+<div class="row mt-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h3 class="ms-3">Apna Video</h3>
+        
+        <a href="/apnavideoconfrencing/login" class="me-3 text-decoration-none text-light ">Login</a>
+    </div>
+</div>
+  <div class="row p-5 mt-5">
+    <h1 class="col-6 offset-3">Register on ApanaVideo</h1>
+    <div class="col-6 offset-3">
+      <form action="/apnavideo/register" method="POSt" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good</div>
+        </div>
+
+
+          <div class="mb-3">
+          <label for="Email" class="form-label">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form-control"
+            required
+          />
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Correct</div>
+        </div>
+        <button class="btn btn-danger">Register</button>
+      </form>
+    </div>
+  </div>
+</div>

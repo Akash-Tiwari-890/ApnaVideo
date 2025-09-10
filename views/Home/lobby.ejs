@@ -1,0 +1,109 @@
+<%- layout('layouts/boilerplate') -%>
+<div class="LandingPageContainer">
+    <div class="conatiner">
+      <div class="row ">
+          <div class="mt-3 ">
+           <h3 class="fs-5 ms-3">Apna Video Conferencing</h3>
+          </div> 
+      </div>
+      
+      <div class="row">
+        <div class="text-center p-4 video ">
+          <video id="localVideo" autoplay playsinline muted class="video"></video>
+        </div>
+        <div class="controls text-center">
+          <button id="toggleAudioBtn" class="btn btn-danger btn-circle me-3 " disabled>
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button id="toggleVideoBtn" class="btn btn-danger btn-circle" disabled>
+            <i class="fas fa-video"></i>
+          </button>
+          <div class="mt-3">
+            <form id="lobbyForm">
+              
+              <input type="text" id="usernameInput" placeholder="Enter your username" class="p-1 input" />
+              
+              <button type="submit" class="btn btn-dark p-2">Join Meeting</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const localVideo = document.getElementById("localVideo");
+        const toggleAudioBtn = document.getElementById("toggleAudioBtn");
+        const toggleVideoBtn = document.getElementById("toggleVideoBtn");
+        const lobbyForm = document.getElementById("lobbyForm");
+        const usernameInput = document.getElementById("usernameInput");
+        const startMeetingBtn = document.getElementById("startMeetingBtn");
+        const meetingCode = "<%= meetingCode %>";
+        let localStream;
+        let isVideoEnabled = true;
+        let isAudioEnabled = true;
+
+        // Function to request permissions
+        async function getPermissions() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: true
+                });
+
+                localStream = stream;
+                localVideo.srcObject = localStream;
+                toggleAudioBtn.disabled = false;
+                toggleVideoBtn.disabled = false;
+                
+            } catch (error) {
+                console.error("Error accessing media devices.", error);
+                alert("Could not access your camera and microphone. Please check your permissions.");
+            }
+        }
+       
+        // We call getPermissions on a user gesture, like a button click
+        document.addEventListener("DOMContentLoaded", () => {
+             getPermissions();
+        })
+
+        toggleAudioBtn.addEventListener("click", () => {
+            const audioTrack = localStream.getAudioTracks()[0];
+            if (audioTrack) {
+                audioTrack.enabled = !audioTrack.enabled;
+                if (audioTrack.enabled) {
+                    toggleAudioBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                } else {
+                    toggleAudioBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+                }
+            }
+        });
+
+        toggleVideoBtn.addEventListener("click", () => {
+            const videoTrack = localStream.getVideoTracks()[0];
+            if (videoTrack) {
+                videoTrack.enabled = !videoTrack.enabled;
+                if (videoTrack.enabled) {
+                    toggleVideoBtn.innerHTML = '<i class="fas fa-video"></i>';
+                } else {
+                    toggleVideoBtn.innerHTML = '<i class="fas fa-video-slash"></i>';
+                }
+            }
+        });
+
+        lobbyForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const username = usernameInput.value.trim();
+            if (username && localStream) {
+                const audioEnabled = localStream.getAudioTracks()[0].enabled;
+                const videoEnabled = localStream.getVideoTracks()[0].enabled;
+                const redirectUrl = `/apnavideo/call/${meetingCode}?username=${username}&audio=${audioEnabled}&video=${videoEnabled}`;
+                window.location.href = redirectUrl;
+            } else if (!localStream) {
+                alert("Please enable your camera and microphone first.");
+            } else {
+                alert("Please enter a username.");
+            }
+        });
+    </script>
+    </div>
+</div>
