@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-md bg-dark  navbar-dark border-bottom-dark sticky-top">
+  <div class="container-fluid fs-light">
+    <a class="navbar-brand text-light" href="#">Apna Video Confrencing</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active  text-light" aria-current="page" href="#">join as guest</a>
+        </li>
+      <% if(!currentUser){%>
+        <li class="nav-item">
+          <a class="nav-link  text-light"  href="/apnavideo/register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  text-light" href="/apnavideoconfrencing/login">Login</a>
+        </li>
+
+        <% } %>
+
+        <% if(currentUser){%>
+         <li class="nav-item">
+          <a class="nav-link  text-light" href="/apnavideo/logout">Logout</a>
+        </li>
+
+        <% } %>
+       
+      </ul>
+    </div>
+  </div>
+</nav>

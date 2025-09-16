@@ -1,46 +1,27 @@
 <% layout("/layouts/boilerplate") %>
 
 
-    <div class="LandingPageContainer">
-         <nav>
-            <div class="navHeader">
-                <h2> Apna Video Conferencing </h2>
-            </div>
-            <div class="navList">
-
-                     <a href="/apnavideo/loby?guest=guestuser">join as guest</a>
-               
-               
-                <% if(!currentUser){%>
-                <a href="/apnavideo/register" class="text-decoration-none text-light">Register</a>
-                <div role="button">
-                    <a href="/apnavideoconfrencing/login" class="text-decoration-none text-light">Login</a>    
-
-                </div>
-                <%} %>  
-                 <% if(currentUser){%>
-                <a href="/apnavideo/logout"   class="text-decoration-none text-light">Logout</a>
-                <%}%>
-
-            </div>
-        </nav> 
+    <div class="LandingPageContainerr container mt-3">
+       
 
 
-
-         <div class="landingMainContainer">
-            <div>
-                <h1><span >Connect</span> with  your love one</h1>
-                <p>Cover a distance by aapna video call</p>
-                <form action="apnavideo/link" method="GET" >
+         <div class="landingMainContainer row ms-auto ">
+            <div class="col-6 text-white p-5">
+                <div class="text">
+                <h1 class="fw-4"><span >Connect</span> with  your love one</h1>
+                <p class="text-white">Cover a distance by aapna video call</p>
+                <form action="/apnavideo/link" method="GET" >
                    
                     <Button class="btn btn-danger p-3  " style="width:8rem">Get started</Button>
                
                 </form>
+            </div>
                 
             </div>
               
-            <div>
-                <img src="media/mobile.png" alt="Mobile phone illustration">
+            <div  class="col-6 p-5 ">
+
+                <img src="media/mobile.png" alt="Mobile phone illustration " class="ms-4 ">
             </div>
 
         </div>

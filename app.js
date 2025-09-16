@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV !="production"){//WHEN WE ARE AT NOT AT PRODUCTION THAN WE CAN USE ENV FILE OTHERIWISE WE WI;L NOT USE IT
+    require('dotenv').config();
+}//if the node env is not production then only we will load the .env file
+
+
 const express = require("express");
 const app = express();
 const ejsMate = require("ejs-mate");
@@ -6,12 +11,17 @@ const mongoose = require("mongoose");
 const http = require('http');
 const { Server } = require("socket.io");
 const  session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash"); 
-const MONGO_URL ="mongodb://127.0.0.1:27017/apnavideo";
+// const MONGO_URL ="mongodb://127.0.0.1:27017/apnavideo";
+const dburl =  process.env.ATLASDB_URL;
+console.log(dburl);
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
 const {isLoggedIn} = require("./middleware.js");    
+
+const apnavideo = require("./routes/home.js")
 main().then(()=>{
     console.log("connected to mongo db");
 }).catch((err)=>{
@@ -19,7 +29,7 @@ main().then(()=>{
 });
 
 async function main(){
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dburl);
 }
 
 const server = http.createServer(app);
@@ -29,8 +39,27 @@ app.set("view engine" , "ejs");
 app.set("views" , path.join(__dirname , "views"));
 app.use(express.static("public"));
 app.engine("ejs" , ejsMate);
+
+
+const store = MongoStore.create({
+    mongoUrl: dburl, // Use the same MongoDB URL as above
+    crypto :{
+        secret: process.env.SECRET ,
+       
+    },
+    touchAfter: 24 * 3600, // How often to update the session in the database (in seconds)
+});
+
+
+
+store.on("error" , ()=>{
+    console.log('ERROR IN MONGOSTORE', err)
+})
+
+
 const sessionOptions={
-    secret:"mysupersecret",
+    store,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -41,6 +70,9 @@ const sessionOptions={
     }
 
 }
+
+
+
 
 
 app.use(session(sessionOptions));
@@ -63,77 +95,8 @@ app.use((req,res,next)=>{
     next();
 })
 
-
+app.use("/apnavideo" , apnavideo )
 // Route handlers
-app.get("/apnavideo" , (req,res)=>{
-    res.render("Home/home");
-});
-
-app.get("/apnavideo/register" , (req,res)=>{
-    res.render("users/signup");
-});
-
-app.get("/apnavideoconfrencing/login" , (req,res)=>{
-    res.render("users/login");
-});
-
-app.get("/apnavideo/link"  , isLoggedIn ,   (req,res)=>{
-    res.render("Home/link");
-   
-});
-
-app.get("/apnavideo/loby", isLoggedIn ,  (req, res) => {
-    const meetingCode = req.query.meetingCode;
-     const guestuser   = req.query.guest
-     console.log(guestuser);
-
-    res.render("Home/lobby", { meetingCode: meetingCode  , guestuser : guestuser});
-});
-
-app.get('/apnavideo/call/:meetingCode', isLoggedIn , (req, res) => {
-    const meetingCode = req.params.meetingCode;
-    res.render('Home/call', { meetingCode });
-});
-
-
-
-app.post("/apnavideo/register" , async(req,res)=>{
-    console.log(req.body);
-    let {username , email , password} = req.body;
-    const user = new User({username , email}); 
-   const reguser =  await User.register(user , password ) 
-   console.log(reguser);
-   req.login(reguser , (err)=>{
-    if(err){
-        return next(err);
-    }
-    req.flash("success"  , "User Registered Sucesfully");
-     res.redirect("/apnavideo") 
-        
-   })
-  
-});
-
-app.post("/apnavideo/login", passport.authenticate('local', { failureredirect: "/login", failureFlash: true }), async (req, res) => {
-    req.flash("success" , "Welcome Back to apnavideo confrencing");
-    res.redirect("/apnavideo" );    
-});
-
-
-
-app.get("/apnavideo/logout", (req, res, next) => {
-  req.logout((err) => {
-    if (err) return next(err);
-
-    req.flash("success", "Logged Out Successfully"); // ✅ Still inside session context
-    res.redirect("/apnavideo");
-  });
-});
-
-
-
-
-
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
@@ -160,21 +123,13 @@ io.on('connection', (socket) => {
         // 4. Notify other users that a new user has joined
         socket.to(meetingCode).emit('user-joined', { userId: socket.id });
     });
-   
-
-    
- 
-    
 
      socket.on('chat message', (msg , username) => {
          io.emit('chat message', msg , username);
     console.log('message: ' + msg  , username);
   });
 
-
-   
  // ... existing code
-
 socket.on('send_caption', (data) => {
     const { text, username } = data;
     // Find the room the user is in. The `rooms` Set will contain their socket ID and the meeting code.
@@ -187,10 +142,7 @@ socket.on('send_caption', (data) => {
     }
 });
 
-// ... existing code
-
-  
-    // Handle WebRTC signaling events
+// Handle WebRTC signaling events
     socket.on('offer', ({ offer, targetUserId }) => {
         io.to(targetUserId).emit('offer', { offer, sourceUserId: socket.id });
     });
@@ -217,3 +169,4 @@ socket.on('send_caption', (data) => {
 server.listen(8000 , ()=>{
     console.log("Server is listening on port 8000");
 });
+

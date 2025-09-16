@@ -4,7 +4,7 @@ module.exports.isLoggedIn =(req,res,next)=>{
       
      
        
-        return res.redirect("/apnavideoconfrencing/login");
+        return res.redirect("/apnavideo/login");
        
     }
     next();

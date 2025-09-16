@@ -1,29 +1,42 @@
 body{
+
+    font-family: "Plus Jakarta Sans", sans-serif !important;/*Applied fornt style form google fonts*/
+  display:flex;
+  flex-direction: column;
+  min-height: 100vh;
+
     overflow: hidden;
+     background-image: url("/media/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container{
+    flex:1
 }
 
 
-.LandingPageContainer{
+/* .LandingPageContainer{
     width: 100vw;
     height: 100vh;
     background-image: url("/media/background.png");
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-}
+} */
 
-.LandingPageContainer nav{
+/* .LandingPageContainer nav{
     padding-inline: 1.2rem ;
     padding-block:  1.6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;;
-}
+} */
 
 
-.LandingPageContainer nav h2{
+/* .LandingPageContainer nav h2{
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .LandingPageContainer nav .navList{
@@ -53,7 +66,7 @@ body{
 }
 
 .landingMainContainer > div:nth-child(1)  div[role="button"]{
-    background: #D97500;;
+    background: #D97500;
     width : fit-content;
     padding : 1rem;
     border-radius: 20px;
@@ -65,7 +78,7 @@ body{
       
     font-size : 1.7rem;
     
-}
+} */
 
 
 
@@ -99,6 +112,7 @@ body{
 }
 .input{
     border: 7px solid black;
+    
 
 }
 
@@ -111,12 +125,12 @@ body{
 }
 
 
-/* Ensure the page and containers take up the full viewport height */
-html, body {
+Ensure the page and containers take up the full viewport height */
+/* html, body {
     height: 100%;
     margin: 0;
     overflow: hidden; /* Prevent scrolling if elements overflow */
-}
+
 
 /* Make the main row take up full height and use flex to manage content */
 .row.h-100 {
@@ -158,3 +172,27 @@ html, body {
     border-radius: 8px;
     border: 2px solid #555;
 }
+
+.navbar{
+    height : 5rem;
+}
+
+
+
+.footer{
+     height:8rem;/
+}
+
+.f-info-brand{
+      width : 100%;/*Giving 100% wit to brand name*/
+     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text{
+    margin-top: 6rem;
+}
+
+
+
