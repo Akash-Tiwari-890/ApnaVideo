@@ -1,5 +1,5 @@
 module.exports.home= (req,res)=>{
-    res.render("./home/home.ejs");
+    res.render("/home/home.ejs");
 };
 
 module.exports.link =   (req,res)=>{
