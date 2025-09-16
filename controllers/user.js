@@ -2,11 +2,11 @@ const User = require("../models/user.js");
 
 
 module.exports.getregister = (req,res)=>{
-    res.render("./users/signup.ejs");
+    res.render("users/signup.");
 }
 
 module.exports.getlogin = (req,res)=>{
-    res.render("./users/login.ejs");
+    res.render("users/login.");
 }
 
 module.exports.postregister =  async(req,res)=>{
