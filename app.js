@@ -96,6 +96,14 @@ app.use((req,res,next)=>{
 })
 
 app.use("/apnavideo" , apnavideo )
+
+
+
+app.get("/", (req, res) => {
+    console.log("Root path (/) hit! Redirecting to /listings.");
+    res.redirect("/apnavideo"); // This sends the user's browser to the /listings URL
+});
+
 // Route handlers
 
 // Socket.IO connection handling
@@ -170,4 +178,3 @@ server.listen(8000 , ()=>{
     console.log("Server is listening on port 8000");
 });
 
-module.exports = app;
