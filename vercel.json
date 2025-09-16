@@ -1,8 +1,13 @@
 {
+  "functions": {
+    "app.js": {
+      "runtime": "node@22.x"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/apnavideo/$1"
+      "destination": "/app.js"
     }
   ]
 }
