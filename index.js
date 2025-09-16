@@ -95,7 +95,7 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.use("/apnavideo" , apnavideo )
+app.use("/" , apnavideo )
 // Route handlers
 
 // Socket.IO connection handling
