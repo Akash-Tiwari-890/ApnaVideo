@@ -179,8 +179,29 @@ Ensure the page and containers take up the full viewport height */
 
 
 
-.footer{
-     height:8rem;/
+/* Footer */
+
+.f-info-links{
+    text-decoration: none;     /*Removing the defult link color of term and privacy*/
+    color:#222222 ;  /*   Adding collor to link */  
+}
+.f-info-links a:hover{
+    text-decoration: underline;   /* Adding hover effect*/
+  
+}
+
+.f-info-links{
+    width: 100%; /*Giving 100% widht to yhe links*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials{
+    width : 100%;/*Giving 100% width to the soscial media plateform icon*/
+     display: flex;
+    align-items: center;
+    justify-content: center;
+   
 }
 
 .f-info-brand{
@@ -189,10 +210,21 @@ Ensure the page and containers take up the full viewport height */
     align-items: center;
     justify-content: center;
 }
-
-.text{
-    margin-top: 6rem;
+.f-info-socials i{
+    font-size: 1.2rem;
+   
+    margin-right: 1.2rem; /*Giving the space btween icons under f-info-socilas*/
 }
 
+
+.f-info{
+    text-align: center;/*Aligning all the things at the center*/
+    height:8rem;/* Adding hegingt to footer*/
+    background-color: #ebebeb; /*Adding coolor to footer*/
+    display : flex; /* Alligning content in one line*/
+    flex-wrap:wrap;
+   justify-content: center; /*Item allign at center*/
+   align-items: space-evenly;
+}
 
 
