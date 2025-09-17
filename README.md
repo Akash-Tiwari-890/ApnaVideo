@@ -10,16 +10,13 @@ It allows users to create and join video calls with unique meeting codes, share 
 </div>
 <hr>
 <div>
+
 <h1>Technology Used</h1> <br>
-     <ul>
-       <li>
-         <h3>Frontent :</h3> HTML , CSS , JavaScript, BootStrap.
-         <h3>Backend :</h3>  Express.js , Node.js , Ejs-Mate, Socket.io, WebRtc . 
-         <h3>Authhentication :</h3>Passport.js . 
-         <h3>Databases</h3> : MongoAtlas , MongoDB.
-         <h3>Deployment</h3> : Render.
-       </li>
-     </ul>
- </div> 
- <hr>
+<ul>
+    <li><h3>Frontend :</h3> HTML, CSS, JavaScript, BootStrap</li>
+    <li><h3>Backend :</h3> Express.js, Node.js, Ejs-Mate, Socket.io, WebRTC</li>
+    <li><h3>Authentication :</h3> Passport.js</li>
+    <li><h3>Databases</h3>: MongoAtlas, MongoDB</li>
+    <li><h3>Deployment</h3>: Render</li>
+</ul>
 
