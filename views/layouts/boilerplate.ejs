@@ -18,17 +18,16 @@
 
 </head>
 <body>
+    <%-include ("../includes/navbar.ejs")%>
+    
+    <main class="content-wrapper"> 
+        <div class="container">
+            <%-include ("../includes/flash.ejs")%>
+            <%- body %>
+        </div>
+    </main>
 
-   
-    <%-include ("../includes/navbar.ejs")%>  <!--Inserted navbar which will comman to our all pages from include/navbar.ejs-->
-    <div class="container ">
-      <%-include ("../includes/flash.ejs")%> <!--Inserted flash wich will be commn to all the pages from include/flash.ejs-->   
-        <%- body %>
-</div>
- <%-include ("../includes/footer.ejs")%><!--Insertend footer wich will be commn to all the pages from include/fotter.ejs-->
+    <%-include ("../includes/footer.ejs")%>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-    <script src="/js/script.js"></script> <!--We have included js file for clied side vallidation which contian java script logic -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/starability/2.4.2/starability.min.js"></script>
-</body>
+    </body>
 </html>
