@@ -11,8 +11,8 @@ body{
     background-size: cover;
 }
 
-.container{
-    flex: 1;
+.container-wrap{
+    flex-grow: 1;
 }
 
 
