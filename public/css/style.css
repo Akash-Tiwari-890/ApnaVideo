@@ -4,6 +4,7 @@ body{
   display:flex;
   flex-direction: column;
   min-height: 100vh;
+    overflow-y: auto; 
      background-image: url("/media/background.png");
     background-repeat: no-repeat;
     background-size: cover;
