@@ -9,10 +9,10 @@ body{
     background-size: cover;
 }
 
-.container-wrap{
-    flex-grow: 1;
+.content-wrapper{
+    flex-grow : 1;
 }
-jjjd
+
 
 /* .LandingPageContainer{
     width: 100vw;
