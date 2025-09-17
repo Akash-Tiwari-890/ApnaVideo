@@ -218,7 +218,7 @@ Ensure the page and containers take up the full viewport height */
 .f-info{
     text-align: center;/*Aligning all the things at the center*/
     height:8rem;/* Adding hegingt to footer*/
-    background-color: #210909; /*Adding coolor to footer*/
+   
     display : flex; /* Alligning content in one line*/
     flex-wrap:wrap;
    justify-content: center; /*Item allign at center*/
